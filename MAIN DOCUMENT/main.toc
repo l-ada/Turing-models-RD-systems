@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}Derivation of equations}{1}{}%
+\contentsline {subsection}{\numberline {1.1}Extended calculations}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Linearization}{3}{}%
+\contentsline {section}{\numberline {2}Eigenvalue analysis}{4}{}%
+\contentsline {subsection}{\numberline {2.1}The determinant}{4}{}%
+\contentsline {subsection}{\numberline {2.2}The brusselator}{4}{}%
+\contentsline {subsection}{\numberline {2.3}Determinant neutral curve}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}Different diffusion coefficients}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.2}Comparison of with the case of no interactions}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.3}Monotonicity}{7}{}%
+\contentsline {subsection}{\numberline {2.4}Trace minimal curve}{7}{}%
+\contentsline {section}{\numberline {3}Results}{7}{}%
+\contentsline {subsection}{\numberline {3.1}Neutral curve}{7}{}%
+\contentsline {section}{\numberline {4}Collected equations}{11}{}%

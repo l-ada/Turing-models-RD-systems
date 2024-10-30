@@ -1,0 +1,347 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+
+
+\newcommand{\showeq}[1]{\text{\eqref{#1}}}
+\newcommand{\tr}{\text{tr}}
+\begin{document}
+	\tableofcontents
+	Hello
+	\section{Derivation of equations}
+	We start with free energy for excluded volume. 
+	\begin{equation}\label{free-energy}
+		F=\frac{C_{rest}}{C_{\infty}}\left(u\ln\left(\frac{u}{c_{\infty}-u-v}\right)+v\ln\left(\frac{v}{c_{\infty}-u-v}\right)\right)+c_{\infty}\ln\left(1-\frac{u+v}{c_{\infty}}\right)
+	\end{equation}
+	For the rest of this text I will use $ c $ instead of $ c_{\infty} $. Also I denote
+	\begin{equation}
+		R = c-u-v, A = \frac{C_{\text{rest}}}{c_\infty}
+	\end{equation}
+	From free energy we get the chemical potentials
+	\begin{align}
+		\mu_{u}&=\frac{\partial F}{\partial u}=A\left(\left(\ln\frac{u}{R}\right)+\frac{R+u+v-c_{\infty}}{R}\right)=A\left(\ln\frac{u}{R}\right)= A \ln(u)-A\ln(R) \\
+		\mu_{v}&=\frac{\partial F}{\partial v}= = A \ln(v)-A\ln(R)
+	\end{align}
+	
+In the end we want to compute  $\partial_x u \partial_x(\mu_u)$, because the full equation is 
+\begin{equation}
+\dot{u} = \partial_x u \partial_x(\mu_u) + f_u(u,v).
+\end{equation}
+
+ 
+ 
+The computations are contained in the next subchapter
+	\subsection{Extended calculations}
+		We want to compute
+	\begin{equation}\label{chemical-potential}
+		\mu_{u}=\frac{\partial F}{\partial u},
+	\end{equation}
+where 
+\begin{align}
+	F=&u\ln\frac{u}{R}+v\ln\frac{v}{R}+c\ln\left(1-\frac{u+v}{c}\right)\\
+	=&u\ln u-u\ln R+v\ln v-v\ln R+c\ln R - c \ln c
+\end{align}
+We have 
+\begin{align*} 
+	&\frac{\partial}{\partial u}\left(u \ln u\right) = \ln u + 1, \\ 
+	&\frac{\partial}{\partial u}\left(-u \ln R\right) = -\ln R + \frac{u}{R},  \text{ (the mistakes were here)}\\ 
+	&\frac{\partial}{\partial u}\left(v \ln v\right) = 0, \\ 
+	&\frac{\partial}{\partial u}\left(-v \ln R\right) = \frac{v}{R}, \\ &\frac{\partial}{\partial u}\left(c \ln R\right) = -\frac{c}{R}, \\ &\frac{\partial}{\partial u}\left(-c \ln c\right) = 0. 
+\end{align*} 
+So in the end we get
+\begin{equation}
+	\mu_u = \ln u -\ln R = \ln u - \ln (c-u-v),
+	\end{equation}	
+	using 
+	\begin{equation}
+	R = c-u-v.
+	\end{equation}
+
+Now we compute derivative
+We have
+\begin{equation}
+\partial_{x}\mu_{u}=\frac{u^{\prime}}{u}-\frac{R^{\prime}}{R}=\left(\frac{1}{u}+\frac{1}{R}\right)u^{\prime}+\frac{1}{R}v^{\prime}
+\end{equation}
+So we would get 
+\begin{align}
+&D_{uu}=(1+\frac{u}{R})=1+\frac{u}{c-u-v}\\
+&D_{uv}=\frac{u}{R}=\frac{u}{c-u-v}
+\end{align}
+
+So 
+\begin{align}\partial_x( u \partial_x \mu_u) &=u''+ \frac{u'R-R'u}{R^2}(u'+v')+\frac{u}{R}(u''+v'')\\
+&=u''+\frac{u'}{R}(u'+v')+\frac{u}{R^2}(u'+v')^2+\frac{u}{R}(u''+v'')\\&=
+u''-\frac{u(RR''-(R')^2)+R'u'R}{R^2}\\
+&=u'' - \frac{u}{R}R'' + u\frac{(R')^2}{R^2}-\frac{R'u'}{R}
+\end{align}
+Or finally
+\begin{align}
+\partial_x( u \partial_x \mu_u)=&u''+\frac{u'}{(c-u-v)}(u'+v')\\&+\frac{u}{(c-u-v)^2}(u'+v')^2+\frac{u}{(c-u-v)}(u''+v'')\label{eq:laplacian}
+\end{align}
+
+And from this we get the linearization $u \to u+\delta u$, by also assuming  $u',v',u'',v'' = 0$
+and ignoring higher order terms.
+$$\delta \dot u = \delta u'' + \frac{u}{c-u-v}(\delta u'' + \delta v'') + \text{ reaction kinetics part}$$
+If we introduce the coefficient in free energy we'll get
+$$\delta \dot u = D_1\left(\delta u'' + \frac{u}{c-u-v}(\delta u'' + \delta v'')\right) + \text{ reaction kinetics part}$$
+Or
+$$\delta \dot u = \left(D_{uu}\delta u'' + D_{uv}\delta v'' \right)$$
+for $\delta  w=(\delta u, \delta v)$
+$$\delta \dot w = \begin{pmatrix} D_1(1+\frac{u}{c-u-v}) & D_1\frac{u}{c-u-v}\\ D_2\frac{v}{c-u-v} & D_2(1+\frac{v}{c-u-v})\end{pmatrix} \delta w'' + \text{ reaction kinetics part}$$
+So the end result is the same
+		
+\subsection{Linearization}
+The linearized equation looks like
+\begin{equation}
+\delta \dot w = \bar{D} \delta w'' + A(w) \delta w,
+\end{equation}
+where 
+\begin{equation}
+\bar{D} = \begin{pmatrix} D_1(1+\frac{u}{c-u-v}) & D_1\frac{u}{c-u-v}\\ D_2\frac{v}{c-u-v} & D_2(1+\frac{v}{c-u-v})\end{pmatrix} 
+\end{equation}
+As usual taking $\delta w = v_q \exp{iqx+\sigma t}$ leads to the eigenvalue problem
+\begin{equation}
+\sigma v_q = (-q^2 \bar{D}+A)v_q
+\end{equation}
+
+\section{Eigenvalue analysis}
+We want to find the eigenvalues $\sigma(q)$. Thus we look at the characteristic polynomial
+\begin{equation}
+\det(A-q^2\bar{D}-\sigma\mathbf{1}) = 0
+\end{equation}
+We can denote $A_q = A-q^2 \bar{D}$.
+Then we get
+\begin{equation}
+\sigma^2 - \text{tr}A_q \sigma + \det A_q = 0
+\end{equation}
+with the solutions
+\begin{equation}
+\sigma=\frac12\left(\text{tr}A_q \pm \sqrt{(\text{tr}A_q)^2-4\det A_q}\right)
+\end{equation}
+As before the condition for stability is
+\[\tr A_q < 0, \det A_q > 0.\]
+
+
+\subsection{The determinant}
+We have the following expresssion for the determinant
+\begin{equation}
+\det A_q = \det A - q^2(d_{uu}a_{vv}+d_{vv}a_{uu}-d_{uv}a_{vu}-d_{vu}a_{uv})+q^4 \det \bar{D}.
+\end{equation}
+We'll write this as
+\begin{equation}
+\det A_q = \det A - Bq^2 + C q^4,
+\end{equation}
+We can see that
+\begin{equation}
+C = D_1D_2\frac{c}{c-u-v},
+\end{equation}
+or
+\begin{equation}
+\det A_q = \det A - q^2(D_{2}a_{uu}+D_1a_{vv} + B') + q^4 (D_1 D_2 + C'),
+\end{equation}
+where $B',C'$ are the terms occuring solely due to the interactions.
+We find that the minimum occurs at $q_{crit}^2 = \frac {B}{2C}$ and
+\begin{equation}
+\det A_{q_{crit}} = \det A - \frac{B^2}{4C}
+\end{equation}
+Since $C>0,$ it follows that $B>0$ as well.
+
+\subsection{The brusselator}
+In the case of Brusselator we have
+\begin{align}
+A&=\begin{pmatrix}b-1& a^2 \\ -b &-a^2\end{pmatrix}\\
+\tr A &= b-1-a^2\\
+\det A&= a^2\\
+u&=a,v=\frac{b}{a} (\text{fixed point})\\
+f_u &= a-(b+1)u+u^2v, f_v = bu-u^2v
+\end{align}
+
+\begin{equation}
+B=\frac{D_1(2ab-a^2c)+D_2(a-c+bc-2ab)}{R}
+\end{equation} or in the case of $D_1 = D_2$
+\begin{equation}
+B = \frac{a-c+bc-a^2c}{R},
+\end{equation}
+where $R = c-a-\frac ba$.
+Thus
+\begin{equation}
+\det A_q = a^2 - q^2\frac{D_1(2ab-a^2c)+D_2(a-c+bc-2ab)}{c-a-\frac{b}{a}}+q^4 D_1D_2\frac{c}{c-a-\frac{b}{a}}
+\end{equation}
+The trace is equal to
+\begin{equation}
+\tr A_q = b-1-a^2 - q^2 (\frac{D_1(c-\frac{b}{a})+D_2(c-a)}{c-a-\frac{b}{a}})
+\end{equation}
+We also have 
+
+\begin{equation}
+B = \frac{a^3 D_1-\frac{b^2 D_2}{a}-a b D_1+a b D_2+\frac{b D_2}{a}}{c-a-\frac{b}{a}}+a^2 D_1-b D_2+D_2
+\end{equation}
+and 
+\begin{equation}
+q_{c}^2 = -\frac{-a^2 c D_1+a (2 b (D_1-D_2)+D_2)+(b-1) c D_2}{2 c D_1 D_2}
+\end{equation}
+\subsection{Determinant neutral curve}
+To find the neutral curve we set 
+$\det A_q = 0$. From this we solve for $b$. 
+We get
+\begin{equation}
+b(q)=\frac{D_1 D_2 c q^4 + D_1 a^2 c q^2 - D_2 a q^2 + D_2 c q^2 - a^3 + a^2 c}{2 D_1 a q^2 - 2 D_2 a q^2 + D_2 c q^2 + a}
+\end{equation}
+In the case of $D_1=D_2$ it simplifies to
+\begin{equation}
+b=\frac{D^2 c q^4 +Dq^2(  a^2 c  -  a  +  c ) - a^3 + a^2 c}{D c q^2 + a} 
+\end{equation}
+It's important to remember that $R>0$ i.e $c-a-\frac{b}{a}>0$, which gives us a bound on $b$.\\
+One can also write it as
+\begin{equation}
+b(q) = \frac{L}{c}+ (a^2-\frac{3a}{c}+1)+\frac{a(1-ac)(2a-c)}{cL},
+\end{equation}
+where $L= Dcq^2 + a$. The minimum occurs at $L^2 = a(1-ac)(2a-c) = a^2c^2+2a^2-ac-2a^3c$ and is equal to 
+\begin{equation}
+b(q_{crit}) = 1+a^2 + \frac{2\sqrt{a(1-ac)(2a-c)}-3a}{c}.
+\end{equation}
+For a minimum to exist we must have $L^2>0$, which means that $a \in (\frac{1}{c}, \frac{c}{2})$. Otherwise the only minimum is at $q=0$ and is equal to $ca-a^2$. That means that $c$ can't be too small if we want Turing patterns, i.e if $a>\frac{c}{2}$, then we only get minimum at $q=0$ This means that $\det A_q$ is always positive for the $b's$ we're allowed to use. We also must have $\sqrt{a(1-ac)(2a-c)}-a\geq 0.$, which is the condition $L>0$.1
+
+\subsubsection{Different diffusion coefficients}
+For different diffusion coefficient we can repeat the same trick, but the expressions are much more involved.
+\begin{equation}
+b(q) = B_0 L + B_1  + \frac{B_2}{L},
+\end{equation} where
+\begin{align}
+L&=2 a D_1 q^2-2 a D_2 q^2+c D_2 q^2+a\\
+B_0&=\frac{c D_1 D_2}{(2 a (D_1-D_2)+c D_2)^2}\\
+B_1&=\frac{2 a^3 c D_1^2-2 a^3 c D_1 D_2+a^2 c^2 D_1 D_2-2 a^2 D_1 D_2+2 a^2 D_2^2-3 a c D_2^2+c^2 D_2^2}{(2 a D_1-2 a D_2+c D_2)^2}\\
+B_2&=-\frac{a (2 a-c) (a D_1-a D_2+c D_2) \left(2 a^2 D_1-2 a^2 D_2+a c D_2-D_2\right)}{(2 a D_1-2 a D_2+c D_2)^2}
+\end{align}
+The coefficients were derived using Mathematica.
+As before we can find the minimum at 
+\begin{equation}
+L^2 = \frac{B_2}{B_0}
+\end{equation}
+\subsubsection{Comparison of with the case of no interactions}
+For the no interaction case we have
+\begin{equation}
+b_{cN} = (1+a\sqrt{\frac{D_1}{D_2}})^2,
+\end{equation} which reduces to
+\begin{equation}
+b_{cN} = (1+a)^2,
+\end{equation} which is derived from
+\begin{equation}
+b(q) = \frac{a^2}{D_2 q^2}+ \frac{D_2 + D_1 a^2}{D_2}+ D_1 q^2
+\end{equation}
+\subsubsection{Monotonicity}
+Let's check how changing the parameters shifts the neutral curve.
+Let's start with the minimum, ie. $b_{crit}$.
+We can rewrite is as 
+\begin{equation}
+b_{crit} = b_c^T = 1+a^2 + 2\sqrt{a^2+\frac{a}{c}(2\frac{a}{c}-2a^2-1)}-3\frac{a}{c}
+\end{equation}
+\subsection{Trace minimal curve}
+The neutral curve  for trace is more complicated. 
+\begin{equation}
+0=-b^2 + b \left(a c+D_1 q^2+1\right)+a^4-a^3 c+a^2 \left(D_2 q^2+1\right)-a c D_1 q^2-a c D_2 q^2-a c
+\end{equation}
+or for $D_1=D_2$
+\begin{equation}
+0 = -b^2 + b \left(a c+D q^2+1\right) + a^4-a^3c+a^2-ac + Dq^2(a^2-2ac)
+\end{equation}
+It seems like the minimum is still at $q=0$, and the curve is closed and resembles ellipse. 
+Actually. We know that $b=1+a^2$ works and it seems like $b = ca-a^2$ also works.
+Similar thing seems to happen when $a\approx\frac{c}{2}$. The curve suddenly flips around the maximum possible $b$ and the minimum occurs at $q=0$ and is equal to $ca-a^2$, which means that for these parameters the system is stable.
+But it's not exactly $\frac{c}{2}$
+As this is a quadratic equation in $b$ we can solve it explicitly, which will give us a square root term.
+We have two solutions for the square root to be equal to zero.
+\begin{equation}
+a_{crit} = \frac{1}{4}(c\pm\sqrt{c^2-8})
+\end{equation}
+This is kind of weird since it implies $c^2$ can't be smaller than $8$.
+So for $a<a_{\text{crit\_minus}}$ or $a> a_{\text{crit\_plus}}$ we have only $\tr A_q <0$ for any permissible $b$.
+
+\section{Results}
+If $2a>c$, then $\det $ is always positive. Can I manipulate 
+
+\subsection{Neutral curve}
+Here are some comparisons between neutral curves of det, with and without interactions
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{images/plot_20240719_111506.png} 
+
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{images/plot_20240719_112606.png} 
+
+\end{figure}
+
+\subsection*{Comparison of critical parameter with and without interactions}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{images/I1a} 
+
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{ccc}
+        \subcaptionbox{Caption 1a}[5cm]{\includegraphics[width=5cm]{images/I1a}} &
+        \subcaptionbox{Caption 1b}[5cm]{\includegraphics[width=5cm]{images/I1b}} &
+        \subcaptionbox{Caption 1c}[5cm]{\includegraphics[width=5cm]{images/I1c}} \\
+        
+        \subcaptionbox{Caption 2a}[5cm]{\includegraphics[width=5cm]{images/I2a}} &
+        \subcaptionbox{Caption 2b}[5cm]{\includegraphics[width=5cm]{images/I2b}} &
+        \subcaptionbox{Caption 2c}[5cm]{\includegraphics[width=5cm]{images/I2c}} \\
+        
+        \subcaptionbox{Caption 3a}[5cm]{\includegraphics[width=5cm]{images/I3a}} &
+        \subcaptionbox{Caption 3b}[5cm]{\includegraphics[width=5cm]{images/I3b}} &
+        \subcaptionbox{Caption 3c}[5cm]{\includegraphics[width=5cm]{images/I3c}} \\
+    \end{tabular}
+    \caption{3x3 grid of subfigures}
+    \label{fig:3x3grid}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{cc}
+        \subcaptionbox{Caption 1a}[7cm]{\includegraphics[width=7cm]{images/I1a}} &
+        \subcaptionbox{Caption 1b}[7cm]{\includegraphics[width=7cm]{images/I1b}} \\        
+        \subcaptionbox{Caption 2a}[7cm]{\includegraphics[width=7cm]{images/I2a}} &
+        \subcaptionbox{Caption 2b}[7cm]{\includegraphics[width=7cm]{images/I2b}} \\
+        \\
+
+    \end{tabular}
+    \caption{}
+    \label{fig:3x3grid}
+\end{figure}
+
+\section{Collected equations}
+\begin{align}
+A&=\begin{pmatrix}b-1& a^2 \\ -b &-a^2\end{pmatrix}\\
+\tr A &= b-1-a^2\\
+\det A&= a^2\\
+u&=a,v=\frac{b}{a} (\text{fixed point})\\
+f_u &= a-(b+1)u+u^2v, f_v = bu-u^2v
+\end{align}
+
+\begin{equation}
+\bar{D} = \begin{pmatrix} D_1(1+\frac{u}{c-u-v}) & D_1\frac{u}{c-u-v}\\ D_2\frac{v}{c-u-v} & D_2(1+\frac{v}{c-u-v})\end{pmatrix} 
+\end{equation}
+
+	\begin{equation}
+	\det A_{q}=\det A-q^2\left(d_{uu}a_{vv}+d_{vv}a_{uu}-a_{vu}d_{uv}-d_{vu}a_{uv}\right)+q^4 \det \bar{D},
+	\end{equation}
+	\begin{equation}
+	\det A_q = a^2 - q^2\frac{D_1(2ab-a^2c)+D_2(a-c+bc-2ab)}{c-a-\frac{b}{a}}+q^4\frac{c}{c-a-\frac{b}{a}}
+	\end{equation}
+	\begin{equation}
+	\tr A_q = \tr A - q^2 (D_1 (1+\frac uR) + D_2 (1+\frac vR)=b-1-a^2 - q^2 (\frac{D_1(c-\frac{b}{a})+D_2(c-a)}{c-a-\frac{b}{a}})
+	\end{equation}
+	
+	\begin{equation}
+	C = D_1D_2 \frac{c}{R}
+	\end{equation}
+	
+\end{document}
